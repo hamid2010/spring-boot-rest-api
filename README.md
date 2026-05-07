@@ -60,7 +60,7 @@ POST /api/v1/users
 Content-Type: application/json
 
 {
-  "name": "Hamid Rezaei",
+  "name": "Hamid Elharouachi",
   "email": "hamid@example.com"
 }
 ```
@@ -69,7 +69,7 @@ Content-Type: application/json
 ```json
 {
   "id": 1,
-  "name": "Hamid Rezaei",
+  "name": "Hamid Elharouachi",
   "email": "hamid@example.com"
 }
 ```
