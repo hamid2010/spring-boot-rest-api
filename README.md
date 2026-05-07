@@ -60,7 +60,7 @@ POST /api/v1/users
 Content-Type: application/json
 
 {
-  "name": "Hamid Elharouachi",
+  "name": "Elharouachi Hamid",
   "email": "hamid@example.com"
 }
 ```
@@ -69,7 +69,7 @@ Content-Type: application/json
 ```json
 {
   "id": 1,
-  "name": "Hamid Elharouachi",
+  "name": "Elharouachi Hamid",
   "email": "hamid@example.com"
 }
 ```
@@ -150,7 +150,7 @@ Tests use `spring-boot-starter-webmvc-test` and `spring-boot-starter-data-jpa-te
 ## 👤 Author
 
 **Hamid** — Full Stack / Backend Developer  
-📍 Milano, Italy  
+📍 Milano (Mi), Italy  
 https://www.linkedin.com/in/hamid-elharouachi/
 🔗 [github.com/hamid2010](https://github.com/hamid2010)
 
