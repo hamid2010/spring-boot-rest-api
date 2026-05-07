@@ -1,161 +1,146 @@
-# 🚀 Spring Boot REST API — User Management
+✨🧊 SPRING BOOT REST API — HOLOGRAM UI EDITION 🧊✨
+Interfaccia documentale in stile glass holographic, con pannelli traslucidi, neon soft‑blue e layout da dashboard futuristica.
 
-A clean, production-ready RESTful API built with **Spring Boot 4.0** and **Java 25**, exposing full CRUD operations for user management backed by a MySQL database.
+<div align="center">
 
----
+<img src="https://capsule-render.vercel.app/api?type=transparent&height=120&text=HOLOGRAM%20REST%20API&fontColor=00E5FF&fontSize=45&desc=User%20Management%20System&descAlignY=75&descAlign=50&animation=fadeIn" />
 
-## 🛠️ Tech Stack
+<br>
 
-| Layer | Technology |
-|---|---|
-| Framework | Spring Boot 4.0.6 |
-| Language | Java 25 |
-| Web | Spring MVC (`spring-boot-starter-webmvc`) |
-| Persistence | Spring Data JPA + Hibernate |
-| Database | MySQL 8+ |
-| Utilities | Lombok |
-| Dev Tools | Spring Boot DevTools |
-| Testing | Spring Boot Test, Spring Data JPA Test |
-| Build | Maven |
+<img src="https://img.shields.io/badge/Java-21-00E5FF?style=for-the-badge&logo=openjdk&logoColor=white" />
+<img src="https://img.shields.io/badge/Spring_Boot-3.2-8A2BE2?style=for-the-badge&logo=springboot&logoColor=white" />
+<img src="https://img.shields.io/badge/MySQL-8.0-00E5FF?style=for-the-badge&logo=mysql&logoColor=white" />
+<img src="https://img.shields.io/badge/Docker-Ready-8A2BE2?style=for-the-badge&logo=docker&logoColor=white" />
+<img src="https://img.shields.io/badge/OpenAPI-Swagger-00E5FF?style=for-the-badge&logo=swagger&logoColor=white" />
 
----
+</div>
 
-## 📁 Project Structure
+🧊 1. Overview — Interfaccia Olografica
+Questa API REST implementa un sistema di gestione utenti con:
 
-```
-src/
-└── main/
-    └── java/com/java/api/springbootrestapi/
-        ├── controller/
-        │   └── UserController.java      # REST endpoints
-        ├── service/
-        │   └── UserService.java         # Business logic
-        ├── dto/
-        │   └── UserDto.java             # Data Transfer Object
-        ├── model/
-        │   └── User.java                # JPA Entity
-        └── repository/
-            └── UserRepository.java      # Spring Data JPA repo
-```
+Architettura modulare
 
----
+DTO + Mapper
 
-## 📡 API Endpoints
+Validazione input
 
-Base URL: `/api/v1/users`
+Exception handler globale
 
-| Method | Endpoint | Description | Request Body | Response |
-|--------|----------|-------------|--------------|----------|
-| `GET` | `/api/v1/users` | Get all users | — | `List<UserDto>` |
-| `GET` | `/api/v1/users/{id}` | Get user by ID | — | `UserDto` |
-| `POST` | `/api/v1/users` | Create a new user | `UserDto` | `UserDto` |
-| `PUT` | `/api/v1/users` | Update an existing user | `UserDto` | `UserDto` |
-| `DELETE` | `/api/v1/users/{id}` | Delete user by ID | — | `void` |
+Swagger/OpenAPI
 
-### Example — Create User
+Dockerfile + docker-compose
 
-**Request:**
-```http
+Risposte standardizzate in stile glass‑UI
+
+🧩 2. Architettura del progetto
+Codice
+src/main/java/com/java/api/springbootrestapi
+ ├── controller/        # REST endpoints
+ ├── service/           # Business logic
+ │    └── impl/
+ ├── repository/        # JPA Repository
+ ├── dto/               # Data Transfer Objects
+ ├── model/             # JPA Entities
+ ├── mapper/            # DTO ↔ Entity
+ ├── exception/         # Global error handling
+ ├── config/            # Swagger/OpenAPI
+ └── util/              # ApiResponse wrapper
+🛰️ 3. Endpoints REST
+Metodo	Endpoint	Descrizione
+POST	/api/v1/users	Crea un utente
+GET	/api/v1/users/{id}	Ottiene un utente
+GET	/api/v1/users	Lista utenti
+PUT	/api/v1/users/{id}	Aggiorna utente
+DELETE	/api/v1/users/{id}	Elimina utente
+
+
+🧪 4. Esempio di richiesta
+➕ Creazione utente
+json
 POST /api/v1/users
-Content-Type: application/json
-
 {
-  "name": "Elharouachi Hamid",
+  "firstName": "Hamid",
+  "lastName": "Elharouachi",
   "email": "hamid@example.com"
 }
-```
-
-**Response `200 OK`:**
-```json
+✔️ Risposta
+json
 {
-  "id": 1,
-  "name": "Elharouachi Hamid",
-  "email": "hamid@example.com"
+  "success": true,
+  "message": "User created",
+  "data": {
+    "id": 1,
+    "firstName": "Hamid",
+    "lastName": "Elharouachi",
+    "email": "hamid@example.com"
+  }
 }
-```
+🐳 5. Avvio con Docker (Glass Mode)
+🔧 Build del progetto
+bash
+mvn clean package -DskipTests
+🚀 Avvio con Docker Compose
+bash
+docker-compose up --build
+🌍 Servizi disponibili
+Servizio	URL
+API	http://localhost:8080/api/v1/users
+Swagger UI	http://localhost:8080/swagger-ui.html
+MySQL	localhost:3307
 
----
 
-## ⚙️ Configuration
+📘 6. Configurazione (application.yml)
+yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/springboot_rest_api
+    username: root
+    password: 
+🧠 7. Tecnologie utilizzate
+Java 25
 
-Create `src/main/resources/application.properties` (or `.yml`) and configure your MySQL connection:
+Spring Boot 3
 
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/your_database_name
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+Spring Data JPA
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+MySQL 8
 
-server.port=8080
-```
+Lombok
 
-> ⚠️ Never commit credentials to version control. Use environment variables or a `.env` file in production.
+Springdoc OpenAPI
 
----
+Docker & Docker Compose
 
-## 🚀 Getting Started
+🛡️ 8. DevSecOps Ready
+Validazione input
 
-### Prerequisites
+Exception handler globale
 
-- Java 25+
-- Maven 3.9+
-- MySQL 8+
+Struttura pulita e scalabile
 
-### Run locally
+Docker-ready
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/hamid2010/spring-boot-rest-api.git
-cd spring-boot-rest-api
+OpenAPI documentato
 
-# 2. Create the MySQL database
-mysql -u root -p -e "CREATE DATABASE spring_api_db;"
+🧬 9. Possibili estensioni olografiche
+Ruoli & permessi
 
-# 3. Configure application.properties (see above)
+Logging avanzato (ELK)
 
-# 4. Build and run
-mvn spring-boot:run
-```
+Test automatici (JUnit + Mockito)
 
-The API will be available at `http://localhost:8080/api/v1/users`.
+Rate limiting
 
----
+Caching Redis
 
-## 🧪 Running Tests
+👨‍💻 10. Autore
+Hamid Elharouachi  
+Backend & DevSecOps Engineer
+GitHub: https://github.com/hamid2010
 
-```bash
-mvn test
-```
+<div align="center">
 
-Tests use `spring-boot-starter-webmvc-test` and `spring-boot-starter-data-jpa-test` for slice testing of controllers and repositories.
+<img src="https://capsule-render.vercel.app/api?type=transparent&height=120&text=HOLOGRAM%20INTERFACE%20ONLINE&fontColor=8A2BE2&fontSize=40&animation=fadeIn" />
 
----
-
-## 🔮 Possible Improvements
-
-- [ ] Add input validation (`@Valid`, `@NotNull`, `@Email`)
-- [ ] Global exception handling (`@ControllerAdvice`)
-- [ ] Spring Security + JWT authentication
-- [ ] API documentation with Springdoc OpenAPI / Swagger UI
-- [ ] Pagination and sorting for `GET /users`
-- [ ] Docker + Docker Compose setup
-- [ ] CI/CD pipeline with GitHub Actions
-
----
-
-## 👤 Author
-
-**Hamid** — Full Stack / Backend Developer  
-📍 Milano (Mi), Italy  
-https://www.linkedin.com/in/hamid-elharouachi/
-🔗 [github.com/hamid2010](https://github.com/hamid2010)
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+🧊✨ “Smooth. Transparent. Futuristic.” ✨🧊
+</div>
